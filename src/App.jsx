@@ -6,7 +6,7 @@ import Inputform from './Components/Inputform/Inputform'
 function App() {
   const [showInputform, setshowInputform] = useState(false)
   const [cards, setcards] = useState([
-    {id:1, title:"Title comes here", description:"Decription comes here !! Decription comes here !! Decription comes here !! Decription comes here !! sdhfjhfjkdhfjksh"},
+    {id:1, title:"Title comes here", description:"Decription comes here !! Decription comes here !! Decription comes here !! Decription comes here !!"},
   ])
 
   function handleshowInputform(){
@@ -31,7 +31,7 @@ function App() {
             <h1 className='text-black font-extrabold bg-[#9775fa] border-black border-2 rounded-full w-[40px] h-[40px] flex items-center justify-center text-[20px] text-center'>+</h1>
           </button>
         </div>
-        <div className='flex flex-wrap gap-4 justify-center items-center'>
+        <div className='flex flex-wrap gap-4 justify-center items-center mb-[100px]'>
           {cards.map((card) => (
             <Cards card={card} key={card.id} onDeleteItems={handleDeleteItems} />
           ))}
