@@ -1,29 +1,19 @@
 import React, { useState } from 'react'
-import '../Inputform/Inputform.css'
+import '../Editform/Editform.css'
 
-const Inputform = ({handlecloseInputform, handleAddItems}) => {
-  const [title, settitle] = useState("")
-  const [description, setdescription] = useState("")
-  const [close, setclose] = useState(false)
+const Editform = ({EditId, EditTitle, EditDesc, handlecloseEditform, handleUpdateItems}) => {
+  const [title, settitle] = useState(EditTitle)
+  const [description, setdescription] = useState(EditDesc)
 
   function handleSubmit(event){
     event.preventDefault()
-    if(close){
-      handlecloseInputform()
-      setclose(false)
-    }
+    if(title.length === 0 || description.length === 0) alert("Your notes can't be empty !!")
     else{
-      if(title.length === 0 || description.length === 0) alert("Your notes can't be empty !!")
-      else{
-        const newcard = {
-          id: Date.now(), title, description
-        }
-        handleAddItems(newcard)
-        handlecloseInputform()
+    handleUpdateItems(EditId, title, description)
+    handlecloseEditform()
 
-        settitle("")
-        setdescription("")
-      }
+    settitle("")
+    setdescription("")
     }
   }
 
@@ -41,12 +31,9 @@ const Inputform = ({handlecloseInputform, handleAddItems}) => {
             </div>
             <div className='flex gap-10'>
               <button className='text-white text-center font-semibold bg-black px-7 py-3 rounded-[10px] mt-auto z-10' onClick={handleSubmit}>
-                Add
+                Save
               </button>
-              <button className='text-white text-center font-semibold bg-black px-7 py-3 rounded-[10px] mt-auto z-10' onClick={()=>{
-                handleSubmit
-                setclose(true)
-                }}>
+              <button className='text-white text-center font-semibold bg-black px-7 py-3 rounded-[10px] mt-auto z-10' onClick={()=>{handlecloseEditform}}>
                 Cancel
               </button>
             </div>
@@ -55,4 +42,4 @@ const Inputform = ({handlecloseInputform, handleAddItems}) => {
   )
 }
 
-export default Inputform
+export default Editform
